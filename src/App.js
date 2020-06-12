@@ -40,7 +40,7 @@ class App extends Component {
 
   get selectedQuote() {
     if (!this.state.quotes.length || !Number.isInteger(this.state.selectedQuoteIndex)) {
-      return 'Error';
+      return undefined;
     }
     return this.state.quotes[this.state.selectedQuoteIndex];
   }
@@ -56,7 +56,9 @@ class App extends Component {
     return (
       <Grid className={this.props.classes.container} id="quote-box" justify="center" container>
         <Grid xs={11} lg={8} item>
-          <QuoteMachine selectedQuote={this.selectedQuote} assignNewQuoteIndex={this.assignNewQuoteIndex}/>
+          {this.selectedQuote ?
+            <QuoteMachine selectedQuote={this.selectedQuote} assignNewQuoteIndex={this.assignNewQuoteIndex}/>
+            : null}
         </Grid>
       </Grid>
     );
